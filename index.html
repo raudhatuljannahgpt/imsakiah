@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Imsakiah - Musholla Raudhatul Jannah</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+        .font-heavy { font-weight: 900; letter-spacing: -0.02em; }
+        .hero-section {
+            background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%), url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 480px;
+        }
+        .card-soft-shadow { box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.06); }
+        .green-glow-shadow { box-shadow: -10px 0 30px rgba(0,0,0,0.1), 0 20px 40px -10px rgba(0, 255, 94, 0.5); }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <div class="hero-section relative w-full">
+        <div class="max-w-5xl mx-auto px-10 md:px-14 pt-16">
+            <h1 class="text-6xl text-white font-heavy leading-[1.1] drop-shadow-lg">
+                Jadwal<br>Imsakiah
+            </h1>
+        </div>
+    </div>
+
+    <div class="px-10 md:px-14 -mt-56 relative z-10 mb-16">
+        <div class="max-w-5xl mx-auto">
+            <div class="bg-[#333b46] rounded-[3rem] shadow-2xl flex flex-col md:flex-row min-h-[320px] relative">
+                
+                <div class="w-full md:w-1/2 p-10 flex flex-col justify-between text-white">
+                    <div class="flex items-center justify-between bg-white/10 rounded-full p-1 mb-8">
+                        <button onclick="ubahHari(-1)" class="p-2 hover:bg-white/10 rounded-full transition">
+                            <img src="icon-previous.svg" class="w-5 h-5 invert" alt="Prev">
+                        </button>
+                        <span class="font-heavy text-sm tracking-wide">Hari <span id="display-hari">Ahad</span></span>
+                        <button onclick="ubahHari(1)" class="p-2 hover:bg-white/10 rounded-full transition">
+                            <img src="icon-next.svg" class="w-5 h-5 invert" alt="Next">
+                        </button>
+                    </div>
+
+                    <div class="mb-6">
+                        <div id="display-hijri" class="text-3xl font-bold mb-1 tracking-tight">-- --- 14-- H</div>
+                        <div id="display-masehi" class="text-xl opacity-70">-- --- 20-- M</div>
+                    </div>
+
+                    <div class="h-px w-full bg-white/10 my-6"></div>
+
+                    <div class="flex items-start gap-3">
+                        <img src="icon-location.svg" class="w-5 h-5 mt-1 invert opacity-70" alt="Loc">
+                        <p id="display-lokasi" class="text-sm font-medium opacity-80 leading-relaxed">Mendeteksi lokasi...</p>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 bg-[#16a34a] text-white p-10 flex flex-col justify-center items-center text-center 
+                            rounded-b-[3rem] md:rounded-l-[3rem] md:rounded-r-[3rem] green-glow-shadow">
+                    <p class="text-sm font-bold tracking-wide opacity-90 mb-3">Waktu Terdekat</p>
+                    <h2 id="next-pray-name" class="text-5xl font-heavy uppercase mb-2">--</h2>
+                    <div id="next-pray-time" class="text-8xl font-heavy tracking-tighter mb-8">--:--</div>
+                    <div>
+                        <span id="countdown" class="inline-block bg-black/20 px-8 py-3 rounded-full font-mono text-2xl font-bold border border-white/10 backdrop-blur-sm">
+                            -00:00:00
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-10 md:px-14 pb-16 w-full">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <script>
+                const pList = ['Imsak', 'Subuh', 'Terbit', 'Duha', 'Zuhur', 'Asar', 'Magrib', 'Isya'];
+                pList.forEach(p => {
+                    document.write(`
+                        <div id="card-${p}" class="card-soft-shadow bg-white rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center h-48 border border-gray-50 transition-all duration-500">
+                            <img src="icon-${p.toLowerCase()}.svg" id="icon-${p}" class="w-10 h-10 mb-5 opacity-20" alt="${p}">
+                            <span class="text-[10px] font-heavy text-gray-400 uppercase tracking-[0.2em] label mb-2">${p}</span>
+                            <span class="text-3xl font-heavy text-gray-700 time tracking-tight" id="v-${p}">--:--</span>
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+    </div>
+
+    <div class="bg-[#16a34a] w-full py-16 px-10 text-center mt-auto">
+        <div class="max-w-4xl mx-auto">
+            <img src="QS An-Nisa 103.png" alt="Kaligrafi" class="h-16 mx-auto mb-8 brightness-0 invert opacity-90 object-contain">
+            <p class="text-white text-xl italic font-medium leading-relaxed max-w-2xl mx-auto">
+                "Sesungguhnya salat itu adalah fardu yang ditentukan waktunya atas orang-orang yang beriman."
+            </p>
+            <p class="text-white/80 text-sm mt-4 font-bold tracking-wide">(QS. An-Nisa' [4]: 103)</p>
+        </div>
+    </div>
+
+    <div class="bg-[#333b46] text-white py-16 px-10 md:px-14">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+            
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <img src="logo.svg" class="w-24 h-24 brightness-0 invert object-contain" alt="Logo">
+                <div class="text-center md:text-left">
+                    <h3 class="font-heavy text-xl tracking-wide mb-2">Musholla Raudhatul Jannah</h3>
+                    <a href="https://maps.app.goo.gl/7QFZ1CJjUiJLDudq9?g_st=ic" target="_blank" class="text-xs text-gray-400 leading-relaxed font-medium hover:text-white transition-colors">
+                        Perumahan Grand Permata Tembalang<br>
+                        Kelurahan Rowosari, Kecamatan Tembalang,<br>
+                        Kota Semarang, Jawa Tengah 50279
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-6 bg-white/5 p-6 rounded-[2.5rem] border border-white/5">
+                <div class="text-right">
+                    <p class="text-[11px] text-gray-400 tracking-wider mb-1">Informasi Seputar</p>
+                    <p class="text-base font-bold text-white leading-tight">Infaq dan Sedekah<br>Silakan klik:</p>
+                </div>
+                <a href="https://wa.me/6289660304009?text=BTPN%20SYARIAH%20%28547%29%0A1023862413%0AWILDAN%20BACHTIAR" target="_blank" class="bg-white p-2 rounded-2xl w-24 h-24 hover:scale-105 transition-transform flex items-center justify-center shadow-xl">
+                    <img src="qr-code.svg" class="w-full h-full" alt="QR">
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let viewDate = new Date(); 
+        let lat = -7.0503, lon = 110.4398;
+        let todayTimings = null, tomorrowTimings = null;
+        let intervalId = null;
+
+        const bulanHijriahKBBI = {
+            "Muḥarram": "Muharam", "Ṣafar": "Safar", "Rabīʿ al-awwal": "Rabiulawal", 
+            "Rabīʿ al-thānī": "Rabiulakhir", "Jumādá al-ūlá": "Jumadilawal", 
+            "Jumādá al-ākhirah": "Jumadilakhir", "Rajab": "Rajab", "Shaʿbān": "Syakban", 
+            "Ramaḍān": "Ramadan", "Shawwāl": "Syawal", "Dhū al-Qaʿdah": "Zulkaidah", "Dhū al-Ḥijjah": "Zulhijah"
+        };
+        const namaHariMap = ["Ahad", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+
+        function ubahHari(n) {
+            viewDate.setDate(viewDate.getDate() + n);
+            fetchJadwal();
+        }
+
+        function fetchJadwal() {
+            const ts = Math.floor(viewDate.getTime() / 1000);
+            const tmrw = new Date(viewDate); tmrw.setDate(tmrw.getDate() + 1);
+            const tmrwTs = Math.floor(tmrw.getTime() / 1000);
+
+            Promise.all([
+                fetch(`https://api.aladhan.com/v1/timings/${ts}?latitude=${lat}&longitude=${lon}&method=11`).then(r => r.json()),
+                fetch(`https://api.aladhan.com/v1/timings/${tmrwTs}?latitude=${lat}&longitude=${lon}&method=11`).then(r => r.json())
+            ]).then(([d1, d2]) => {
+                const t = d1.data.timings;
+                const h = d1.data.date.hijri;
+                
+                if (viewDate.toDateString() === new Date().toDateString()) {
+                    todayTimings = t; tomorrowTimings = d2.data.timings;
+                    initRealtimeCountdown();
+                }
+
+                document.getElementById('display-hari').innerText = namaHariMap[viewDate.getDay()];
+                const namaBulanApi = h.month.en; 
+                document.getElementById('display-hijri').innerText = `${h.day} ${bulanHijriahKBBI[namaBulanApi] || namaBulanApi} ${h.year} H`;
+                document.getElementById('display-masehi').innerText = viewDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + " M";
+
+                const list = ['Imsak', 'Subuh', 'Terbit', 'Duha', 'Zuhur', 'Asar', 'Magrib', 'Isya'];
+                const apiMap = { 'Imsak': 'Imsak', 'Subuh': 'Fajr', 'Terbit': 'Sunrise', 'Duha': 'Sunrise', 'Zuhur': 'Dhuhr', 'Asar': 'Asr', 'Magrib': 'Maghrib', 'Isya': 'Isha' };
+
+                list.forEach(k => {
+                    document.getElementById(`v-${k}`).innerText = t[apiMap[k]];
+                    const c = document.getElementById(`card-${k}`);
+                    c.className = "card-soft-shadow bg-white rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center h-48 border border-gray-50 transition-all duration-500";
+                    const ic = document.getElementById(`icon-${k}`);
+                    ic.style.filter = "none";
+                    ic.className = "w-10 h-10 mb-5 opacity-20";
+                    c.querySelector('.label').className = "text-[10px] font-heavy text-gray-400 uppercase tracking-[0.2em] label mb-2";
+                    c.querySelector('.time').className = "text-3xl font-heavy text-gray-700 time tracking-tight";
+                });
+            });
+        }
+
+        function initRealtimeCountdown() {
+            if (intervalId) clearInterval(intervalId);
+            intervalId = setInterval(() => {
+                if (!todayTimings) return;
+                const now = new Date();
+                const times = [
+                    { name: 'Imsak', time: todayTimings.Imsak }, { name: 'Subuh', time: todayTimings.Fajr },
+                    { name: 'Zuhur', time: todayTimings.Dhuhr }, { name: 'Asar', time: todayTimings.Asr },
+                    { name: 'Magrib', time: todayTimings.Maghrib }, { name: 'Isya', time: todayTimings.Isha }
+                ];
+                let next = null;
+                for (let p of times) {
+                    let pt = new Date(); let [h, m] = p.time.split(':'); pt.setHours(h, m, 0);
+                    if (pt > now) { next = { ...p, obj: pt }; break; }
+                }
+                if (!next) {
+                    let pt = new Date(); pt.setDate(pt.getDate()+1);
+                    let [h, m] = tomorrowTimings.Imsak.split(':'); pt.setHours(h, m, 0);
+                    next = { name: 'Imsak', time: tomorrowTimings.Imsak, obj: pt };
+                }
+                document.getElementById('next-pray-name').innerText = next.name;
+                document.getElementById('next-pray-time').innerText = next.time;
+                let diff = next.obj - now;
+                let hh = Math.floor(diff / 3600000); let mm = Math.floor((diff % 3600000) / 60000); let ss = Math.floor((diff % 60000) / 1000);
+                document.getElementById('countdown').innerText = `-${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
+
+                const active = document.getElementById(`card-${next.name}`);
+                if(active) {
+                    active.className = "card-soft-shadow bg-white rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center h-48 border-2 border-green-500 shadow-xl scale-[1.05] z-20";
+                    active.querySelector('.label').className = "text-[10px] font-heavy text-green-600 uppercase tracking-[0.2em] label mb-2";
+                    active.querySelector('.time').className = "text-3xl font-heavy text-green-600 time tracking-tight";
+                    const ic = document.getElementById(`icon-${next.name}`);
+                    ic.className = "w-10 h-10 mb-5 opacity-100";
+                    ic.style.filter = "invert(40%) sepia(87%) saturate(1518%) hue-rotate(117deg) brightness(93%) contrast(85%)";
+                }
+            }, 1000);
+        }
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(p => {
+                lat = p.coords.latitude; lon = p.coords.longitude;
+                fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=14`)
+                    .then(r => r.json()).then(d => {
+                        const a = d.address;
+                        const namaLokasi = a.city_district || a.town || a.district || a.suburb || "Semarang";
+                        const kota = a.city || a.regency || "";
+                        document.getElementById('display-lokasi').innerText = `${namaLokasi}, ${kota}`;
+                    })
+                    .catch(() => {
+                        document.getElementById('display-lokasi').innerText = "Tembalang, Kota Semarang";
+                    });
+                fetchJadwal();
+            }, () => fetchJadwal());
+        } else {
+            fetchJadwal();
+        }
+    </script>
+</body>
+</html>
