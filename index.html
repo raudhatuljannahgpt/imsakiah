@@ -149,7 +149,7 @@
         </div>
     </div>
 
-    <script>
+<script>
         let viewDate = new Date(); 
         let lat = -7.0503, lon = 110.4398;
         let todayTimings = null, tomorrowTimings = null;
@@ -168,20 +168,35 @@
             fetchJadwal();
         }
 
+        function geserWaktu(waktuAsli, menit) {
+            let [h, m] = waktuAsli.split(':').map(Number);
+            let date = new Date();
+            date.setHours(h, m, 0);
+            date.setMinutes(date.getMinutes() + menit);
+            return String(date.getHours()).padStart(2, '0') + ":" + String(date.getMinutes()).padStart(2, '0');
+        }
+
         function fetchJadwal() {
             const ts = Math.floor(viewDate.getTime() / 1000);
             const tmrw = new Date(viewDate); tmrw.setDate(tmrw.getDate() + 1);
             const tmrwTs = Math.floor(tmrw.getTime() / 1000);
 
+            const tune = "0,3,-3,3,4,3,0,2"; 
+
             Promise.all([
-                fetch(`https://api.aladhan.com/v1/timings/${ts}?latitude=${lat}&longitude=${lon}&method=11`).then(r => r.json()),
-                fetch(`https://api.aladhan.com/v1/timings/${tmrwTs}?latitude=${lat}&longitude=${lon}&method=11`).then(r => r.json())
+                fetch(`https://api.aladhan.com/v1/timings/${ts}?latitude=${lat}&longitude=${lon}&method=20&tune=${tune}`).then(r => r.json()),
+                fetch(`https://api.aladhan.com/v1/timings/${tmrwTs}?latitude=${lat}&longitude=${lon}&method=20&tune=${tune}`).then(r => r.json())
             ]).then(([d1, d2]) => {
-                const t = d1.data.timings;
+                let t = d1.data.timings;
                 const h = d1.data.date.hijri;
                 
+                t.Imsak = geserWaktu(t.Fajr, -10);
+                t.Duha = geserWaktu(t.Sunrise, 28); 
+
                 if (viewDate.toDateString() === new Date().toDateString()) {
-                    todayTimings = t; tomorrowTimings = d2.data.timings;
+                    todayTimings = t; 
+                    tomorrowTimings = d2.data.timings;
+                    tomorrowTimings.Imsak = geserWaktu(tomorrowTimings.Fajr, -10);
                     initRealtimeCountdown();
                 }
 
@@ -191,10 +206,15 @@
                 document.getElementById('display-masehi').innerText = viewDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + " M";
 
                 const list = ['Imsak', 'Subuh', 'Terbit', 'Duha', 'Zuhur', 'Asar', 'Magrib', 'Isya'];
-                const apiMap = { 'Imsak': 'Imsak', 'Subuh': 'Fajr', 'Terbit': 'Sunrise', 'Duha': 'Sunrise', 'Zuhur': 'Dhuhr', 'Asar': 'Asr', 'Magrib': 'Maghrib', 'Isya': 'Isha' };
+                const apiMap = { 
+                    'Imsak': 'Imsak', 'Subuh': 'Fajr', 'Terbit': 'Sunrise', 'Duha': 'Duha', 
+                    'Zuhur': 'Dhuhr', 'Asar': 'Asr', 'Magrib': 'Maghrib', 'Isya': 'Isha' 
+                };
 
                 list.forEach(k => {
-                    document.getElementById(`v-${k}`).innerText = t[apiMap[k]];
+                    const nilaiWaktu = t[apiMap[k]];
+                    document.getElementById(`v-${k}`).innerText = nilaiWaktu;
+                    
                     const c = document.getElementById(`card-${k}`);
                     c.className = "card-soft-shadow bg-white rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center h-48 border border-gray-50 transition-all duration-500";
                     const ic = document.getElementById(`icon-${k}`);
@@ -226,45 +246,39 @@
                     let [h, m] = tomorrowTimings.Imsak.split(':'); pt.setHours(h, m, 0);
                     next = { name: 'Imsak', time: tomorrowTimings.Imsak, obj: pt };
                 }
+                
                 document.getElementById('next-pray-name').innerText = next.name;
                 document.getElementById('next-pray-time').innerText = next.time;
                 let diff = next.obj - now;
                 let hh = Math.floor(diff / 3600000); let mm = Math.floor((diff % 3600000) / 60000); let ss = Math.floor((diff % 60000) / 1000);
                 document.getElementById('countdown').innerText = `-${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
 
-                const active = document.getElementById(`card-${next.name}`);
-                if(active) {
-                    active.className = "card-soft-shadow bg-white rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center h-48 border-2 border-green-500 shadow-xl scale-[1.05] z-20";
-                    active.querySelector('.label').className = "text-[10px] font-heavy text-green-600 uppercase tracking-[0.2em] label mb-2";
-                    active.querySelector('.time').className = "text-3xl font-heavy text-green-600 time tracking-tight";
-                    const ic = document.getElementById(`icon-${next.name}`);
-                    ic.className = "w-10 h-10 mb-5 opacity-100";
-                    ic.style.filter = "invert(40%) sepia(87%) saturate(1518%) hue-rotate(117deg) brightness(93%) contrast(85%)";
+                if (viewDate.toDateString() === new Date().toDateString()) {
+                    const active = document.getElementById(`card-${next.name}`);
+                    if(active) {
+                        active.className = "card-soft-shadow bg-white rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center h-48 border-2 border-green-500 shadow-xl scale-[1.05] z-20";
+                        active.querySelector('.label').className = "text-[10px] font-heavy text-green-600 uppercase tracking-[0.2em] label mb-2";
+                        active.querySelector('.time').className = "text-3xl font-heavy text-green-600 time tracking-tight";
+                        const ic = document.getElementById(`icon-${next.name}`);
+                        ic.className = "w-10 h-10 mb-5 opacity-100";
+                        ic.style.filter = "invert(40%) sepia(87%) saturate(1518%) hue-rotate(117deg) brightness(93%) contrast(85%)";
+                    }
                 }
             }, 1000);
         }
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(p => {
-                lat = p.coords.latitude; 
-                lon = p.coords.longitude;
-                
+                lat = p.coords.latitude; lon = p.coords.longitude;
                 fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10`)
                     .then(r => r.json()).then(d => {
                         const a = d.address;
                         const kotaKab = a.city || a.regency || a.municipality || "Kota Semarang";
-                        
                         document.getElementById('display-lokasi').innerText = kotaKab;
                         fetchJadwal();
-                    })
-                    .catch(() => {
-                        document.getElementById('display-lokasi').innerText = "Kota Semarang";
-                        fetchJadwal();
-                    });
+                    }).catch(() => fetchJadwal());
             }, () => fetchJadwal());
-        } else {
-            fetchJadwal();
-        }
+        } else { fetchJadwal(); }
     </script>
 </body>
 </html>
