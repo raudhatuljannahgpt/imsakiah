@@ -26,54 +26,57 @@
 </head>
 <body class="flex flex-col min-h-screen">
 
+    <div id="toast-container" class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-3 w-[90%] max-w-sm"></div>
+
+    <div id="sticky-header" class="fixed top-0 left-0 w-full bg-white z-50 transform -translate-y-full transition-transform duration-500 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] border-b border-gray-50">
+        <div class="max-w-5xl mx-auto px-10 md:px-14 h-20 flex items-center justify-between">
+            <div class="flex flex-col">
+                <span class="text-xs font-bold text-gray-400 leading-tight">Jadwal</span>
+                <span class="text-xl font-heavy text-gray-600 leading-tight">Imsakiah</span>
+            </div>
+            <div class="text-right">
+                <div id="sticky-realtime-info" class="text-xs font-bold text-gray-500 mb-1 tracking-tight">-- --- 14-- H</div>
+                <div class="flex items-center justify-end gap-1.5 text-green-600 font-bold">
+                    <img src="icon-location.svg" class="w-3.5 h-3.5" style="filter: invert(40%) sepia(87%) saturate(1518%) hue-rotate(117deg) brightness(93%) contrast(85%);" alt="loc">
+                    <span id="sticky-location" class="text-[11px] tracking-wider capitalize">Mendeteksi...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="hero-section relative w-full">
         <div class="max-w-5xl mx-auto px-10 md:px-14 pt-16">
-            <h1 class="text-6xl text-white font-heavy leading-[1.1] drop-shadow-lg">
-                Jadwal<br>Imsakiah
-            </h1>
+            <h1 class="text-6xl text-white font-heavy leading-[1.1] drop-shadow-lg">Jadwal<br>Imsakiah</h1>
         </div>
     </div>
 
     <div class="px-10 md:px-14 -mt-56 relative z-10 mb-16">
         <div class="max-w-5xl mx-auto">
             <div class="bg-[#333b46] rounded-[3rem] shadow-2xl flex flex-col md:flex-row min-h-[320px] relative">
-                
                 <div class="w-full md:w-1/2 p-10 flex flex-col justify-between text-white">
                     <div class="flex items-center justify-between bg-white/10 rounded-full p-1 mb-8">
-                        <button onclick="ubahHari(-1)" class="p-2 hover:bg-white/10 rounded-full transition">
-                            <img src="icon-previous.svg" class="w-5 h-5 invert" alt="Prev">
-                        </button>
+                        <button onclick="ubahHari(-1)" class="p-2 hover:bg-white/10 rounded-full transition"><img src="icon-previous.svg" class="w-5 h-5 invert" alt="Prev"></button>
                         <span class="font-heavy text-sm tracking-wide">Hari <span id="display-hari">Ahad</span></span>
-                        <button onclick="ubahHari(1)" class="p-2 hover:bg-white/10 rounded-full transition">
-                            <img src="icon-next.svg" class="w-5 h-5 invert" alt="Next">
-                        </button>
+                        <button onclick="ubahHari(1)" class="p-2 hover:bg-white/10 rounded-full transition"><img src="icon-next.svg" class="w-5 h-5 invert" alt="Next"></button>
                     </div>
-
                     <div class="mb-6">
                         <div id="display-hijri" class="text-3xl font-bold mb-1 tracking-tight">-- --- 14-- H</div>
                         <div id="display-masehi" class="text-xl opacity-70">-- --- 20-- M</div>
                     </div>
-
                     <div class="h-px w-full bg-white/10 my-6"></div>
-
                     <div class="flex items-start gap-3">
                         <img src="icon-location.svg" class="w-5 h-5 mt-1 invert opacity-70" alt="Loc">
-                        <p id="display-lokasi" class="text-sm font-medium opacity-80 leading-relaxed">Mendeteksi lokasi...</p>
+                        <p id="display-lokasi" class="text-sm font-medium opacity-80 leading-relaxed capitalize">Mendeteksi lokasi...</p>
                     </div>
                 </div>
-
-                <div class="w-full md:w-1/2 bg-[#16a34a] text-white p-10 flex flex-col justify-center items-center text-center
-                            rounded-t-[3rem] rounded-b-[3rem] md:rounded-l-[3rem] md:rounded-r-[3rem] green-glow-shadow">
+                <div class="w-full md:w-1/2 bg-[#16a34a] text-white p-10 flex flex-col justify-center items-center text-center rounded-t-[3rem] rounded-b-[3rem] md:rounded-l-[3rem] md:rounded-r-[3rem] green-glow-shadow">
                     <p class="text-sm font-bold tracking-wide opacity-90 mb-3">Waktu Terdekat</p>
                     <h2 id="next-pray-name" class="text-5xl font-heavy uppercase mb-2">--</h2>
                     <div id="next-pray-time" class="text-8xl font-heavy tracking-tighter mb-8">--:--</div>
                     <div>
-                        <span id="countdown" class="inline-block bg-black/20 px-8 py-3 rounded-full font-mono text-2xl font-bold border border-white/10 backdrop-blur-sm">
-                            -00:00:00
-                        </span>
+                        <span id="countdown" class="inline-block bg-black/20 px-8 py-3 rounded-full font-mono text-2xl font-bold border border-white/10 backdrop-blur-sm">-00:00:00</span>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -93,9 +96,6 @@
                 });
             </script>
         </div>
-        <p class="text-[10px] text-gray-400 mt-8 text-center italic">
-            Sumber: <a href="https://bimasislam.kemenag.go.id/jadwalshalat" target="_blank" class="hover:text-green-600">Direktorat Jenderal Bimbingan Masyarakat Islam Kementerian Agama Republik Indonesia</a>
-        </p>
     </div>
 
     <div class="bg-[#16a34a] w-full py-16 px-10 text-center mt-auto">
@@ -110,19 +110,18 @@
 
     <div class="bg-[#333b46] text-white py-16 px-10 md:px-14">
         <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-            
             <div class="flex flex-col md:flex-row items-center gap-8">
                 <img src="logo.svg" class="w-24 h-24 brightness-0 invert object-contain" alt="Logo">
                 <div class="text-center md:text-left">
                     <h3 class="font-heavy text-xl tracking-wide mb-2">Musholla Raudhatul Jannah</h3>
-                    <a href="https://maps.app.goo.gl/7QFZ1CJjUiJLDudq9?g_st=ic" target="_blank" class="text-xs text-gray-400 leading-relaxed font-medium hover:text-white transition-colors">
+                    <p class="text-xs text-gray-400 leading-relaxed font-medium">
                         Perumahan Grand Permata Tembalang<br>
                         Kelurahan Rowosari, Kecamatan Tembalang,<br>
                         Kota Semarang, Jawa Tengah 50279
-                    </a>
+                    </p>
                 </div>
             </div>
-
+            
             <div class="flex flex-col gap-6">
                 <div class="flex items-center gap-6 bg-white/5 p-6 rounded-[2.5rem] border border-white/5">
                     <div class="text-right">
@@ -133,7 +132,6 @@
                         <img src="qr-code.svg" class="w-full h-full" alt="QR">
                     </a>
                 </div>
-
                 <div class="flex flex-col gap-3 px-2">
                     <a href="https://docs.google.com/spreadsheets/d/1Zjk4UNAZi_My_kTvD5QbPO7LS47p6Y_L3ppK_tRyEfc/edit?usp=sharing" target="_blank" class="group flex items-center gap-3 text-xs text-gray-400 hover:text-white transition-colors">
                         <span class="text-green-500 group-hover:translate-x-1 transition-transform">➤</span>
@@ -145,140 +143,295 @@
                     </a>
                 </div>
             </div>
-
         </div>
     </div>
 
-<script>
-        let viewDate = new Date(); 
-        let lat = -7.0503, lon = 110.4398;
-        let todayTimings = null, tomorrowTimings = null;
-        let intervalId = null;
+    <div class="fixed bottom-6 right-6 z-[60] flex items-center group">
+        <span class="mr-3 bg-[#16a34a] text-white text-xs font-bold px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-lg pointer-events-none">Arah Kiblat</span>
+        <button onclick="bukaKiblat()" class="w-14 h-14 bg-[#16a34a] rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all border-4 border-white/10">
+            <img src="icon-kiblat.svg" class="w-7 h-7 invert" alt="Kiblat">
+        </button>
+    </div>
 
-        const bulanHijriahKBBI = {
-            "Muḥarram": "Muharam", "Ṣafar": "Safar", "Rabīʿ al-awwal": "Rabiulawal", 
-            "Rabīʿ al-thānī": "Rabiulakhir", "Jumādá al-ūlá": "Jumadilawal", 
-            "Jumādá al-ākhirah": "Jumadilakhir", "Rajab": "Rajab", "Shaʿbān": "Syakban", 
-            "Ramaḍān": "Ramadan", "Shawwāl": "Syawal", "Dhū al-Qaʿdah": "Zulkaidah", "Dhū al-Ḥijjah": "Zulhijah"
-        };
-        const namaHariMap = ["Ahad", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+    <div id="modal-kiblat" class="fixed inset-0 z-[200] hidden items-center justify-center p-6 transition-all">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-md" onclick="tutupKiblat()"></div>
+    <div class="bg-[#1a1a1a] w-full max-w-sm rounded-[3rem] p-8 relative z-[210] text-center text-white border border-white/5 shadow-2xl">
+        <button onclick="tutupKiblat()" class="absolute top-6 right-8 text-white/30 hover:text-white text-2xl transition-colors">&times;</button>
+        
+        <h3 class="text-xl font-heavy mb-2 mt-4 tracking-tight">Arah Kiblat</h3>
+        <p class="text-xs text-gray-400 mb-12">Putar ponsel perlahan hingga gambar Ka'bah tegak lurus</p>
 
-        function ubahHari(n) {
-            viewDate.setDate(viewDate.getDate() + n);
-            fetchJadwal();
-        }
+        <div class="relative w-72 h-72 mx-auto mb-16 flex items-center justify-center">
+            
+            <div class="absolute -top-7 left-1/2 -translate-x-1/2 z-30">
+                <div class="w-0 h-0 border-l-[14px] border-l-transparent border-r-[14px] border-r-transparent border-b-[28px] border-b-red-600 drop-shadow-[0_0_15px_rgba(220,38,38,0.6)]"></div>
+            </div>
 
-        function geserWaktu(waktuAsli, menit) {
-            let [h, m] = waktuAsli.split(':').map(Number);
-            let date = new Date();
-            date.setHours(h, m, 0);
-            date.setMinutes(date.getMinutes() + menit);
-            return String(date.getHours()).padStart(2, '0') + ":" + String(date.getMinutes()).padStart(2, '0');
-        }
-
-        function fetchJadwal() {
-            const ts = Math.floor(viewDate.getTime() / 1000);
-            const tmrw = new Date(viewDate); tmrw.setDate(tmrw.getDate() + 1);
-            const tmrwTs = Math.floor(tmrw.getTime() / 1000);
-
-            const tune = "0,3,-3,3,4,3,0,2"; 
-
-            Promise.all([
-                fetch(`https://api.aladhan.com/v1/timings/${ts}?latitude=${lat}&longitude=${lon}&method=20&tune=${tune}`).then(r => r.json()),
-                fetch(`https://api.aladhan.com/v1/timings/${tmrwTs}?latitude=${lat}&longitude=${lon}&method=20&tune=${tune}`).then(r => r.json())
-            ]).then(([d1, d2]) => {
-                let t = d1.data.timings;
-                const h = d1.data.date.hijri;
+            <div id="kompas-disk" class="w-full h-full rounded-full relative transition-transform duration-100 ease-linear flex items-center justify-center bg-[#262626] border border-white/5 shadow-inner">
                 
-                t.Imsak = geserWaktu(t.Fajr, -10);
-                t.Duha = geserWaktu(t.Sunrise, 28); 
-
-                if (viewDate.toDateString() === new Date().toDateString()) {
-                    todayTimings = t; 
-                    tomorrowTimings = d2.data.timings;
-                    tomorrowTimings.Imsak = geserWaktu(tomorrowTimings.Fajr, -10);
-                    initRealtimeCountdown();
-                }
-
-                document.getElementById('display-hari').innerText = namaHariMap[viewDate.getDay()];
-                const namaBulanApi = h.month.en; 
-                document.getElementById('display-hijri').innerText = `${h.day} ${bulanHijriahKBBI[namaBulanApi] || namaBulanApi} ${h.year} H`;
-                document.getElementById('display-masehi').innerText = viewDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + " M";
-
-                const list = ['Imsak', 'Subuh', 'Terbit', 'Duha', 'Zuhur', 'Asar', 'Magrib', 'Isya'];
-                const apiMap = { 
-                    'Imsak': 'Imsak', 'Subuh': 'Fajr', 'Terbit': 'Sunrise', 'Duha': 'Duha', 
-                    'Zuhur': 'Dhuhr', 'Asar': 'Asr', 'Magrib': 'Maghrib', 'Isya': 'Isha' 
-                };
-
-                list.forEach(k => {
-                    const nilaiWaktu = t[apiMap[k]];
-                    document.getElementById(`v-${k}`).innerText = nilaiWaktu;
+                <div class="absolute inset-0 rounded-full flex items-center justify-center">
+                    <span class="absolute top-2 font-bold text-white text-[10px]">0°</span>
+                    <span class="absolute right-2 font-bold text-white text-[10px]">90°</span>
+                    <span class="absolute bottom-2 font-bold text-white text-[10px]">180°</span>
+                    <span class="absolute left-2 font-bold text-white text-[10px]">270°</span>
                     
-                    const c = document.getElementById(`card-${k}`);
-                    c.className = "card-soft-shadow bg-white rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center h-48 border border-gray-50 transition-all duration-500";
-                    const ic = document.getElementById(`icon-${k}`);
-                    ic.style.filter = "none";
-                    ic.className = "w-10 h-10 mb-5 opacity-20";
-                    c.querySelector('.label').className = "text-[10px] font-heavy text-gray-400 uppercase tracking-[0.2em] label mb-2";
-                    c.querySelector('.time').className = "text-3xl font-heavy text-gray-700 time tracking-tight";
-                });
+                    <style>
+                        .deg-marker { position: absolute; height: 92%; width: 20px; display: flex; justify-content: center; align-items: flex-start; font-size: 8px; color: #4b5563; pointer-events: none; }
+                        .deg-30 { transform: rotate(30deg); } .deg-30 span { transform: rotate(-30deg); }
+                        .deg-60 { transform: rotate(60deg); } .deg-60 span { transform: rotate(-60deg); }
+                        .deg-120 { transform: rotate(120deg); } .deg-120 span { transform: rotate(-120deg); }
+                        .deg-150 { transform: rotate(150deg); } .deg-150 span { transform: rotate(-150deg); }
+                        .deg-210 { transform: rotate(210deg); } .deg-210 span { transform: rotate(-210deg); }
+                        .deg-240 { transform: rotate(240deg); } .deg-240 span { transform: rotate(-240deg); }
+                        .deg-300 { transform: rotate(300deg); } .deg-300 span { transform: rotate(-300deg); }
+                        .deg-330 { transform: rotate(330deg); } .deg-330 span { transform: rotate(-330deg); }
+                    </style>
+                    <div class="deg-marker deg-30"><span>30°</span></div>
+                    <div class="deg-marker deg-60"><span>60°</span></div>
+                    <div class="deg-marker deg-120"><span>120°</span></div>
+                    <div class="deg-marker deg-150"><span>150°</span></div>
+                    <div class="deg-marker deg-210"><span>210°</span></div>
+                    <div class="deg-marker deg-240"><span>240°</span></div>
+                    <div class="deg-marker deg-300"><span>300°</span></div>
+                    <div class="deg-marker deg-330"><span>330°</span></div>
+                </div>
+
+                <div class="absolute w-[78%] h-[78%] rounded-full bg-[#121212] shadow-2xl flex items-center justify-center">
+                    <div class="absolute inset-0 text-2xl font-black text-white p-4">
+                        <span class="absolute top-2 left-1/2 -translate-x-1/2 text-red-600">U</span>
+                        <span class="absolute top-1/2 right-4 -translate-y-1/2">T</span>
+                        <span class="absolute bottom-2 left-1/2 -translate-x-1/2">S</span>
+                        <span class="absolute top-1/2 left-4 -translate-y-1/2">B</span>
+                    </div>
+
+                    <div class="w-[58%] h-[58%] rounded-full shadow-[0_0_30px_rgba(212,175,55,0.3)] flex items-center justify-center" 
+                         style="background: linear-gradient(135deg, #FFD700 0%, #FDB931 25%, #E39600 50%, #B5840D 75%, #8A6614 100%);">
+                        <div class="w-full h-full rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="Ka'bah.png" class="w-[60%] h-[60%] object-contain drop-shadow-2xl" alt="Ka'bah">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-5 flex items-center justify-between shadow-xl">
+            <div class="flex items-center gap-4">
+                <div class="bg-gray-900 p-2.5 rounded-2xl">
+                    <img src="icon-kiblat.svg" class="w-6 h-6 invert" alt="K">
+                </div>
+                <span class="text-gray-800 font-bold text-base">Posisi Kiblat</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-px h-8 bg-gray-200"></div>
+                <span id="derajat-teks" class="text-gray-900 text-3xl font-heavy">295°</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let viewDate = new Date(); 
+    let lat = -7.0503, lon = 110.4398; // Koordinat Default Tembalang
+    let todayTimings = null, tomorrowTimings = null;
+    let intervalId = null, qiblaAngle = 295;
+    let sudahNotif = "";
+
+    const bulanHijriahKBBI = {
+        "Muḥarram": "Muharam", "Ṣafar": "Safar", "Rabīʿ al-awwal": "Rabiulawal", 
+        "Rabīʿ al-thānī": "Rabiulakhir", "Jumādá al-ūlá": "Jumadilawal", 
+        "Jumādá al-ākhirah": "Jumadilakhir", "Rajab": "Rajab", "Shaʿbān": "Syakban", 
+        "Ramaḍān": "Ramadan", "Shawwāl": "Syawal", "Dhū al-Qaʿdah": "Zulkaidah", "Dhū al-Ḥijjah": "Zulhijah"
+    };
+    const namaHariMap = ["Ahad", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+
+    // --- LOGIKA JADWAL SALAT ---
+    function tampilkanToast(nama) {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = "bg-white/95 backdrop-blur-md border border-gray-100 shadow-2xl rounded-[1.5rem] p-4 flex items-center justify-between gap-6 transform translate-y-[-20px] opacity-0 transition-all duration-500 ease-out mb-3";
+        toast.innerHTML = `
+            <div class="flex items-center gap-4">
+                <div class="bg-green-50 p-2.5 rounded-2xl">
+                    <img src="icon-${nama.toLowerCase()}.svg" class="w-6 h-6" style="filter: invert(40%) sepia(87%) saturate(1518%) hue-rotate(117deg) brightness(93%) contrast(85%);">
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-bold text-gray-700 leading-none tracking-tight">
+                        Waktu <span class="text-green-600 uppercase font-heavy">${nama}</span> Telah Tiba
+                    </span>
+                </div>
+            </div>
+            <button onclick="this.parentElement.remove()" class="bg-green-600 hover:bg-green-700 text-white text-[10px] font-heavy px-4 py-2 rounded-xl transition-colors shadow-sm active:scale-95 uppercase">OKE</button>
+        `;
+        container.appendChild(toast);
+        setTimeout(() => toast.classList.remove('opacity-0', 'translate-y-[-20px]'), 100);
+        setTimeout(() => { if(toast.parentElement) toast.remove(); }, 60000);
+    }
+
+    function ubahHari(n) {
+        viewDate.setDate(viewDate.getDate() + n);
+        fetchJadwal();
+    }
+
+    function geserWaktu(waktuAsli, menit) {
+        let [h, m] = waktuAsli.split(':').map(Number);
+        let d = new Date(); d.setHours(h, m, 0); d.setMinutes(d.getMinutes() + menit);
+        return String(d.getHours()).padStart(2, '0') + ":" + String(d.getMinutes()).padStart(2, '0');
+    }
+
+    function fetchJadwal() {
+        const ts = Math.floor(viewDate.getTime() / 1000);
+        const tmrw = new Date(viewDate); tmrw.setDate(tmrw.getDate() + 1);
+        const tmrwTs = Math.floor(tmrw.getTime() / 1000);
+        const tune = "0,3,-3,3,4,3,0,2"; 
+
+        Promise.all([
+            fetch(`https://api.aladhan.com/v1/timings/${ts}?latitude=${lat}&longitude=${lon}&method=20&tune=${tune}`).then(r => r.json()),
+            fetch(`https://api.aladhan.com/v1/timings/${tmrwTs}?latitude=${lat}&longitude=${lon}&method=20&tune=${tune}`).then(r => r.json())
+        ]).then(([d1, d2]) => {
+            let t = d1.data.timings;
+            const h = d1.data.date.hijri;
+            t.Imsak = geserWaktu(t.Fajr, -10);
+            t.Duha = geserWaktu(t.Sunrise, 28); 
+
+            if (viewDate.toDateString() === new Date().toDateString()) {
+                todayTimings = t; 
+                tomorrowTimings = d2.data.timings;
+                tomorrowTimings.Imsak = geserWaktu(tomorrowTimings.Fajr, -10);
+                initRealtimeCountdown();
+            }
+
+            document.getElementById('display-hari').innerText = namaHariMap[viewDate.getDay()];
+            const hBulan = h.month.en; 
+            const hStr = `${h.day} ${bulanHijriahKBBI[hBulan] || hBulan} ${h.year} H`;
+            document.getElementById('display-hijri').innerText = hStr;
+            document.getElementById('display-masehi').innerText = viewDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + " M";
+            document.getElementById('sticky-realtime-info').innerText = `${namaHariMap[viewDate.getDay()]}, ${hStr}`;
+
+            const list = ['Imsak', 'Subuh', 'Terbit', 'Duha', 'Zuhur', 'Asar', 'Magrib', 'Isya'];
+            const apiMap = { 'Imsak':'Imsak','Subuh':'Fajr','Terbit':'Sunrise','Duha':'Duha','Zuhur':'Dhuhr','Asar':'Asr','Magrib':'Maghrib','Isya':'Isha' };
+
+            list.forEach(k => {
+                document.getElementById(`v-${k}`).innerText = t[apiMap[k]];
+                const c = document.getElementById(`card-${k}`);
+                c.className = "card-soft-shadow bg-white rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center h-48 border border-gray-50 transition-all duration-500";
+                const ic = document.getElementById(`icon-${k}`);
+                ic.style.filter = "none"; ic.className = "w-10 h-10 mb-5 opacity-20";
+                c.querySelector('.label').className = "text-[10px] font-heavy text-gray-400 uppercase tracking-[0.2em] label mb-2";
+                c.querySelector('.time').className = "text-3xl font-heavy text-gray-700 time tracking-tight";
             });
+        });
+    }
+
+    function initRealtimeCountdown() {
+        if (intervalId) clearInterval(intervalId);
+        intervalId = setInterval(() => {
+            if (!todayTimings) return;
+            const now = new Date();
+            const times = [
+                { name: 'Imsak', time: todayTimings.Imsak }, { name: 'Subuh', time: todayTimings.Fajr },
+                { name: 'Zuhur', time: todayTimings.Dhuhr }, { name: 'Asar', time: todayTimings.Asr },
+                { name: 'Magrib', time: todayTimings.Maghrib }, { name: 'Isya', time: todayTimings.Isha }
+            ];
+
+            const curHM = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');
+            times.forEach(p => {
+                if (curHM === p.time && sudahNotif !== p.name) {
+                    tampilkanToast(p.name); sudahNotif = p.name;
+                }
+            });
+
+            let next = null;
+            for (let p of times) {
+                let pt = new Date(); let [h, m] = p.time.split(':'); pt.setHours(h, m, 0);
+                if (pt > now) { next = { ...p, obj: pt }; break; }
+            }
+            if (!next) {
+                let pt = new Date(); pt.setDate(pt.getDate()+1);
+                let [h, m] = tomorrowTimings.Imsak.split(':'); pt.setHours(h, m, 0);
+                next = { name: 'Imsak', time: tomorrowTimings.Imsak, obj: pt };
+            }
+            
+            document.getElementById('next-pray-name').innerText = next.name;
+            document.getElementById('next-pray-time').innerText = next.time;
+            let diff = next.obj - now;
+            let hh = Math.floor(diff / 3600000); let mm = Math.floor((diff % 3600000) / 60000); let ss = Math.floor((diff % 60000) / 1000);
+            document.getElementById('countdown').innerText = `-${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
+
+            if (viewDate.toDateString() === new Date().toDateString()) {
+                const active = document.getElementById(`card-${next.name}`);
+                if(active) {
+                    active.className = "card-soft-shadow bg-white rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center h-48 border-2 border-green-500 shadow-xl scale-[1.05] z-20";
+                    active.querySelector('.label').className = "text-[10px] font-heavy text-green-600 uppercase tracking-[0.2em] label mb-2";
+                    active.querySelector('.time').className = "text-3xl font-heavy text-green-600 time tracking-tight";
+                    const ic = document.getElementById(`icon-${next.name}`);
+                    ic.className = "w-10 h-10 mb-5 opacity-100";
+                    ic.style.filter = "invert(40%) sepia(87%) saturate(1518%) hue-rotate(117deg) brightness(93%) contrast(85%)";
+                }
+            }
+        }, 1000);
+    }
+
+    // --- LOGIKA KIBLAT ---
+    function hitungKiblat(lati, longi) {
+        const phiK = 21.4225 * Math.PI / 180; const lamK = 39.8262 * Math.PI / 180;
+        const phiL = lati * Math.PI / 180; const lamL = longi * Math.PI / 180;
+        const y = Math.sin(lamK - lamL);
+        const x = Math.cos(phiL) * Math.tan(phiK) - Math.sin(phiL) * Math.cos(lamK - lamL);
+        return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+    }
+
+    function bukaKiblat() {
+        const modal = document.getElementById('modal-kiblat');
+        modal.classList.remove('hidden'); modal.classList.add('flex');
+        qiblaAngle = hitungKiblat(lat, lon);
+        document.getElementById('derajat-teks').innerText = Math.round(qiblaAngle) + "°";
+
+        if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+            DeviceOrientationEvent.requestPermission().then(state => { if (state === 'granted') aktifkanKompas(); }).catch(console.error);
+        } else { aktifkanKompas(); }
+    }
+
+    function aktifkanKompas() {
+        if ("ondeviceorientationabsolute" in window) {
+            window.addEventListener('deviceorientationabsolute', handlerKompas, true);
+        } else {
+            window.addEventListener('deviceorientation', handlerKompas, true);
         }
+    }
 
-        function initRealtimeCountdown() {
-            if (intervalId) clearInterval(intervalId);
-            intervalId = setInterval(() => {
-                if (!todayTimings) return;
-                const now = new Date();
-                const times = [
-                    { name: 'Imsak', time: todayTimings.Imsak }, { name: 'Subuh', time: todayTimings.Fajr },
-                    { name: 'Zuhur', time: todayTimings.Dhuhr }, { name: 'Asar', time: todayTimings.Asr },
-                    { name: 'Magrib', time: todayTimings.Maghrib }, { name: 'Isya', time: todayTimings.Isha }
-                ];
-                let next = null;
-                for (let p of times) {
-                    let pt = new Date(); let [h, m] = p.time.split(':'); pt.setHours(h, m, 0);
-                    if (pt > now) { next = { ...p, obj: pt }; break; }
-                }
-                if (!next) {
-                    let pt = new Date(); pt.setDate(pt.getDate()+1);
-                    let [h, m] = tomorrowTimings.Imsak.split(':'); pt.setHours(h, m, 0);
-                    next = { name: 'Imsak', time: tomorrowTimings.Imsak, obj: pt };
-                }
-                
-                document.getElementById('next-pray-name').innerText = next.name;
-                document.getElementById('next-pray-time').innerText = next.time;
-                let diff = next.obj - now;
-                let hh = Math.floor(diff / 3600000); let mm = Math.floor((diff % 3600000) / 60000); let ss = Math.floor((diff % 60000) / 1000);
-                document.getElementById('countdown').innerText = `-${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
-
-                if (viewDate.toDateString() === new Date().toDateString()) {
-                    const active = document.getElementById(`card-${next.name}`);
-                    if(active) {
-                        active.className = "card-soft-shadow bg-white rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center h-48 border-2 border-green-500 shadow-xl scale-[1.05] z-20";
-                        active.querySelector('.label').className = "text-[10px] font-heavy text-green-600 uppercase tracking-[0.2em] label mb-2";
-                        active.querySelector('.time').className = "text-3xl font-heavy text-green-600 time tracking-tight";
-                        const ic = document.getElementById(`icon-${next.name}`);
-                        ic.className = "w-10 h-10 mb-5 opacity-100";
-                        ic.style.filter = "invert(40%) sepia(87%) saturate(1518%) hue-rotate(117deg) brightness(93%) contrast(85%)";
-                    }
-                }
-            }, 1000);
+    function handlerKompas(e) {
+        let compass = e.webkitCompassHeading || (360 - e.alpha);
+        if (compass !== null && compass !== undefined) {
+            document.getElementById('kompas-disk').style.transform = `rotate(${-compass}deg)`;
         }
+    }
 
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(p => {
-                lat = p.coords.latitude; lon = p.coords.longitude;
-                fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10`)
-                    .then(r => r.json()).then(d => {
-                        const a = d.address;
-                        const kotaKab = a.city || a.regency || a.municipality || "Kota Semarang";
-                        document.getElementById('display-lokasi').innerText = kotaKab;
-                        fetchJadwal();
-                    }).catch(() => fetchJadwal());
-            }, () => fetchJadwal());
-        } else { fetchJadwal(); }
-    </script>
+    function tutupKiblat() {
+        document.getElementById('modal-kiblat').classList.add('hidden');
+        document.getElementById('modal-kiblat').classList.remove('flex');
+        window.removeEventListener('deviceorientationabsolute', handlerKompas);
+        window.removeEventListener('deviceorientation', handlerKompas);
+    }
+
+    // --- INISIALISASI ---
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(p => {
+            lat = p.coords.latitude; lon = p.coords.longitude;
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10`)
+                .then(r => r.json()).then(d => {
+                    const kotaKab = d.address.city || d.address.regency || d.address.municipality || "Kota Semarang";
+                    document.getElementById('display-lokasi').innerText = kotaKab;
+                    document.getElementById('sticky-location').innerText = kotaKab;
+                    fetchJadwal();
+                }).catch(() => fetchJadwal());
+        }, () => fetchJadwal());
+    } else { fetchJadwal(); }
+
+    window.onscroll = function() {
+        const header = document.getElementById('sticky-header');
+        if (window.scrollY > 580) { header.classList.remove('-translate-y-full'); header.classList.add('translate-y-0'); }
+        else { header.classList.remove('translate-y-0'); header.classList.add('-translate-y-full'); }
+    };
+</script>
 </body>
 </html>
