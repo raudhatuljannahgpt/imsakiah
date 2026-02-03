@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jadwal Imsakiah untuk seluruh wilayah Indonesia. Pantau waktu imsak, terbit, duha, dan salat lima waktu setiap hari di sini.">
     <title>Jadwal Imsakiah - Musholla Raudhatul Jannah</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="background.webp">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
@@ -70,9 +72,9 @@
             <div class="bg-[#333b46]/80 backdrop-blur-md rounded-[3rem] shadow-2xl flex flex-col md:flex-row min-h-[320px] relative border border-white/5">
                 <div class="w-full md:w-1/2 p-10 flex flex-col justify-between text-white">
                     <div class="flex items-center justify-between bg-white/10 rounded-full p-1 mb-8">
-                        <button onclick="ubahHari(-1)" class="p-2 hover:bg-white/10 rounded-full transition"><img src="icon-previous.svg" class="w-5 h-5 invert" alt="Prev"></button>
+                        <button onclick="ubahHari(-1)" aria-label="Hari Sebelumnya" class="p-2 hover:bg-white/10 rounded-full transition"><img src="icon-previous.svg" class="w-5 h-5 invert" alt="Prev"></button>
                         <span class="font-heavy text-sm tracking-wide">Hari <span id="display-hari">Ahad</span></span>
-                        <button onclick="ubahHari(1)" class="p-2 hover:bg-white/10 rounded-full transition"><img src="icon-next.svg" class="w-5 h-5 invert" alt="Next"></button>
+                        <button onclick="ubahHari(1)" aria-label="Hari Berikutnya" class="p-2 hover:bg-white/10 rounded-full transition"><img src="icon-next.svg" class="w-5 h-5 invert" alt="Next"></button>
                     </div>
                     <div class="mb-6">
                         <div id="display-hijri" class="text-3xl font-bold mb-1 tracking-tight">-- --- 14-- H</div>
@@ -111,7 +113,7 @@
                 });
             </script>
         </div>
-        <p class="text-[10px] text-gray-400 mt-14 text-center italic">
+        <p class="text-[10px] text-gray-600 mt-14 text-center italic">
             Selengkapnya lihat di: <a href="https://bimasislam.kemenag.go.id/jadwalshalat" target="_blank" class="hover:text-green-600">Direktorat Jenderal Bimbingan Masyarakat Islam Kementerian Agama Republik Indonesia</a>
         </p>
     </div>
@@ -132,7 +134,7 @@
                 <img src="logo.svg" class="w-24 h-24 brightness-0 invert object-contain" alt="Logo">
                 <div class="text-center md:text-left">
                     <h3 class="font-heavy text-xl tracking-wide mb-2">Musholla Raudhatul Jannah</h3>
-                    <a href="https://maps.app.goo.gl/7QFZ1CJjUiJLDudq9?g_st=ic" target="_blank" class="text-xs text-gray-400 leading-relaxed font-medium hover:text-white transition-colors">
+                    <a href="https://maps.app.goo.gl/7QFZ1CJjUiJLDudq9?g_st=ic" target="_blank" aria-label="Lokasi Musholla di Google Maps" class="text-xs text-gray-400 leading-relaxed font-medium hover:text-white transition-colors">
                         Perumahan Grand Permata Tembalang<br>
                         Kelurahan Rowosari, Kecamatan Tembalang,<br>
                         Kota Semarang, Jawa Tengah 50279
@@ -151,11 +153,11 @@
                     </a>
                 </div>
                 <div class="flex flex-col gap-3 px-2">
-                    <a href="https://docs.google.com/spreadsheets/d/1Zjk4UNAZi_My_kTvD5QbPO7LS47p6Y_L3ppK_tRyEfc/edit?usp=sharing" target="_blank" class="group flex items-center gap-3 text-xs text-gray-400 hover:text-white transition-colors">
+                    <a href="https://docs.google.com/spreadsheets/d/1Zjk4UNAZi_My_kTvD5QbPO7LS47p6Y_L3ppK_tRyEfc/edit?usp=sharing" target="_blank" title="Buka Laporan Keuangan" class="group flex items-center gap-3 text-xs text-gray-400 hover:text-white transition-colors">
                         <span class="text-green-500 group-hover:translate-x-1 transition-transform">➤</span>
                         <span class="border-b border-transparent group-hover:border-gray-500">Laporan Keuangan Musholla</span>
                     </a>
-                    <a href="https://renovasimushollagpt.my.canva.site/" target="_blank" class="group flex items-center gap-3 text-xs text-gray-400 hover:text-white transition-colors">
+                    <a href="https://renovasimushollagpt.my.canva.site/" target="_blank" title="Buka Laporan Keuangan" class="group flex items-center gap-3 text-xs text-gray-400 hover:text-white transition-colors">
                         <span class="text-green-500 group-hover:translate-x-1 transition-transform">➤</span>
                         <span class="border-b border-transparent group-hover:border-gray-500">Laporan Keuangan Renovasi Musholla</span>
                     </a>
@@ -166,7 +168,7 @@
 
     <div class="fixed bottom-6 right-6 z-[60] flex items-center group">
         <span class="mr-3 bg-[#16a34a] text-white text-xs font-bold px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-lg pointer-events-none">Arah Kiblat</span>
-        <button onclick="bukaKiblat()" class="w-14 h-14 bg-[#16a34a] rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all border-4 border-white/10">
+        <button onclick="bukaKiblat()" aria-label="Buka Kompas Arah Kiblat" class="w-14 h-14 bg-[#16a34a] rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all border-4 border-white/10">
             <img src="icon-kiblat.svg" class="w-7 h-7 invert" alt="Kiblat">
         </button>
     </div>
