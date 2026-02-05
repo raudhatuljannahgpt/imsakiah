@@ -5,61 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Jadwal Imsakiah untuk seluruh wilayah Indonesia. Pantau waktu imsak, terbit, duha, dan salat lima waktu setiap hari di sini.">
     <title>Jadwal Imsakiah - Musholla Raudhatul Jannah</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="background.webp">
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
-            background-color: #ffffff;
-            color: #1f2937;
-            overflow-x: hidden;
-        }
-        .font-heavy { font-weight: 900; letter-spacing: -0.02em; }
-        .hero-section {
-            position: relative;
-            height: 530px;
-            overflow: hidden;
-            background-color: #000;
-        }
-        #parallax-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 110%;
-            background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%), url('background.webp');
-            background-size: cover;
-            background-position: center;
-            will-change: transform;
-            transform: scale(1.05);
-        }
-        .card-soft-shadow { box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.06); }
-        .green-glow-shadow { box-shadow: -10px 0 30px rgba(0,0,0,0.1), 0 20px 40px -10px rgba(0, 255, 94, 0.5); }
-        img {
-            -webkit-user-drag: none;
-            user-select: none;
-            -moz-user-select: none;
-            -khtml-user-drag: none;
-            -o-user-drag: none;
-        }
-
-        #daftar-kota::-webkit-scrollbar {
-            width: 6px;
-        }
-        #daftar-kota::-webkit-scrollbar-thumb {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-        #daftar-kota::-webkit-scrollbar-thumb:hover {
-            background-color: rgba(34, 197, 94, 0.5);
-        }
-        #daftar-kota {
-            scrollbar-width: thin;
-            scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body oncontextmenu="return false" class="flex flex-col min-h-screen">
 

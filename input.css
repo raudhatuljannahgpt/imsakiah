@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'Inter';
+    src: url('Inter-VariableFont_opsz,wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+@layer base {
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+        background-color: #ffffff;
+        color: #1f2937;
+        overflow-x: hidden;
+    }
+
+    svg, img {
+        max-width: 100%;
+        height: auto;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+.font-heavy { 
+    font-weight: 900; 
+    letter-spacing: -0.02em; 
+}
+
+.hero-section {
+    position: relative;
+    height: 530px;
+    overflow: hidden;
+    background-color: #000;
+}
+
+#parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 110%;
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%), url('background.webp');
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+    transform: scale(1.05);
+}
+
+.card-soft-shadow { 
+    box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.06); 
+}
+
+.green-glow-shadow { 
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1), 0 20px 40px -10px rgba(0, 255, 94, 0.5); 
+}
+
+img {
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+#daftar-kota::-webkit-scrollbar {
+    width: 6px;
+}
+#daftar-kota::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+#daftar-kota::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(34, 197, 94, 0.5);
+}
+#daftar-kota {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
