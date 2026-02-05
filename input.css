@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'Inter';
-    src: url('Inter-VariableFont_opsz,wght.ttf') format('truetype');
+    src: url('Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
     font-weight: 100 900;
     font-display: swap;
 }
@@ -41,7 +41,7 @@
     left: 0;
     width: 100%;
     height: 110%;
-    background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%), url('background.webp');
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%), url('Assets/background.webp');
     background-size: cover;
     background-position: center;
     will-change: transform;
