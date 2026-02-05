@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Jadwal Imsakiah untuk seluruh wilayah Indonesia. Pantau waktu imsak, terbit, duha, dan salat lima waktu setiap hari di sini.">
     <title>Jadwal Imsakiah - Musholla Raudhatul Jannah</title>
-    <link rel="preload" as="image" href="background.webp">
+    <link rel="preload" as="image" href="Assets/background.webp">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
@@ -22,7 +22,7 @@
             <div class="text-right">
                 <div id="sticky-realtime-info" class="text-xs font-bold text-gray-500 mb-1 tracking-tight">-- --- 14-- H</div>
                 <div class="flex items-center justify-end gap-1.5 text-green-600 font-bold">
-                    <img src="icon-location.svg" class="w-3.5 h-3.5" style="filter: invert(40%) sepia(87%) saturate(1518%) hue-rotate(117deg) brightness(93%) contrast(85%);" alt="loc">
+                    <img src="Assets/icon-location.svg" class="w-3.5 h-3.5" style="filter: invert(40%) sepia(87%) saturate(1518%) hue-rotate(117deg) brightness(93%) contrast(85%);" alt="loc">
                     <span id="sticky-location" class="text-[11px] tracking-wider capitalize">Mendeteksi...</span>
                 </div>
             </div>
@@ -39,12 +39,12 @@
 
     <div class="px-10 md:px-14 -mt-64 relative z-10 mb-16">
         <div class="max-w-5xl mx-auto">
-            <div class="bg-[#333b46]/80 backdrop-blur-md rounded-[3rem] shadow-2xl flex flex-col md:flex-row min-h-[320px] relative border border-white/5">
+            <div class="bg-[#333b46]/80 backdrop-blur-md rounded-[3rem] shadow-2xl flex flex-col md:flex-row min-h-[320px] relative ring-1 ring-inset ring-white/5">
                 <div class="w-full md:w-1/2 p-10 flex flex-col justify-between text-white">
                     <div class="flex items-center justify-between bg-white/10 rounded-full p-1 mb-8">
-                        <button onclick="ubahHari(-1)" aria-label="Hari Sebelumnya" class="p-2 hover:bg-white/10 rounded-full transition"><img src="icon-previous.svg" class="w-5 h-5 invert" alt="Prev"></button>
+                        <button onclick="ubahHari(-1)" aria-label="Hari Sebelumnya" class="p-2 hover:bg-white/10 rounded-full transition"><img src="Assets/icon-previous.svg" class="w-5 h-5 invert" alt="Prev"></button>
                         <span class="font-heavy text-sm tracking-wide">Hari <span id="display-hari">Ahad</span></span>
-                        <button onclick="ubahHari(1)" aria-label="Hari Berikutnya" class="p-2 hover:bg-white/10 rounded-full transition"><img src="icon-next.svg" class="w-5 h-5 invert" alt="Next"></button>
+                        <button onclick="ubahHari(1)" aria-label="Hari Berikutnya" class="p-2 hover:bg-white/10 rounded-full transition"><img src="Assets/icon-next.svg" class="w-5 h-5 invert" alt="Next"></button>
                     </div>
                     <div class="mb-6">
                         <div id="display-hijri" class="text-3xl font-bold mb-1 tracking-tight">-- --- 14-- H</div>
@@ -53,7 +53,7 @@
                     <div class="h-px w-full bg-white/10 my-6"></div>
                     <div class="flex items-center justify-between w-full mt-6">
                         <div class="flex items-start gap-3">
-                            <img src="icon-location.svg" class="w-5 h-5 mt-0.5 invert opacity-70" alt="Loc">
+                            <img src="Assets/icon-location.svg" class="w-5 h-5 mt-0.5 invert opacity-70" alt="Loc">
                             <p id="display-lokasi" class="text-sm font-medium opacity-80 leading-relaxed capitalize">Mendeteksi lokasi...</p>
                         </div>
                         <button onclick="bukaModalLokasi()" class="text-[12px] font-bold border border-white/20 px-3 py-1.5 rounded-full hover:bg-white/10 transition-all shrink-0">
@@ -80,7 +80,7 @@
                 pList.forEach(p => {
                     document.write(`
                         <div id="card-${p}" class="card-soft-shadow bg-white rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center h-48 border border-gray-50 transition-all duration-500">
-                            <img src="icon-${p.toLowerCase()}.svg" id="icon-${p}" class="w-10 h-10 mb-5 opacity-20" alt="${p}">
+                            <img src="Assets/icon-${p.toLowerCase()}.svg" id="icon-${p}" class="w-10 h-10 mb-5 opacity-20" alt="${p}">
                             <span class="text-[10px] font-heavy text-gray-400 uppercase tracking-[0.2em] label mb-2">${p}</span>
                             <span class="text-3xl font-heavy text-gray-700 time tracking-tight" id="v-${p}">--:--</span>
                         </div>
@@ -95,7 +95,7 @@
 
     <div class="bg-[#16a34a] w-full py-16 px-10 text-center mt-auto">
         <div class="max-w-4xl mx-auto">
-            <img src="QS An-Nisa 103.webp" alt="إِنَّ ٱلصَّلَوٰةَ كَانَتْ عَلَى ٱلْمُؤْمِنِينَ كِتَٰبٗا مَّوْقُوتٗا" class="h-16 mx-auto mb-8 brightness-0 invert opacity-90 object-contain">
+            <img src="Assets/QS An-Nisa 103.webp" alt="إِنَّ ٱلصَّلَوٰةَ كَانَتْ عَلَى ٱلْمُؤْمِنِينَ كِتَٰبٗا مَّوْقُوتٗا" class="h-16 mx-auto mb-8 brightness-0 invert opacity-90 object-contain">
             <p class="text-white text-xl italic font-medium leading-relaxed max-w-2xl mx-auto">
                 "Sesungguhnya salat itu adalah fardu yang ditentukan waktunya atas orang-orang yang beriman."
             </p>
@@ -106,7 +106,7 @@
     <div class="bg-[#333b46] text-white py-16 px-10 md:px-14">
         <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
             <div class="flex flex-col md:flex-row items-center gap-8">
-                <img src="logo.svg" class="w-24 h-24 brightness-0 invert object-contain" alt="Logo">
+                <img src="Assets/logo.svg" class="w-24 h-24 brightness-0 invert object-contain" alt="Logo">
                 <div class="text-center md:text-left">
                     <h3 class="font-heavy text-xl tracking-wide mb-2">Musholla Raudhatul Jannah</h3>
                     <a href="https://maps.app.goo.gl/7QFZ1CJjUiJLDudq9?g_st=ic" target="_blank" aria-label="Lokasi Musholla di Google Maps" class="text-xs text-gray-400 leading-relaxed font-medium hover:text-white transition-colors">
@@ -124,7 +124,7 @@
                         <p class="text-base font-bold text-white leading-tight">Infaq dan Sedekah<br>Silakan klik:</p>
                     </div>
                     <a href="https://wa.me/6289660304009?text=BTPN%20SYARIAH%20%28547%29%0A1023862413%0AWILDAN%20BACHTIAR" target="_blank" class="bg-white p-2 rounded-2xl w-24 h-24 hover:scale-105 transition-transform flex items-center justify-center shadow-xl">
-                        <img src="qr-code.svg" class="w-full h-full" alt="Scan QR Code">
+                        <img src="Assets/qr-code.svg" class="w-full h-full" alt="Scan QR Code">
                     </a>
                 </div>
                 <div class="flex flex-col gap-3 px-2">
@@ -144,7 +144,7 @@
     <div class="fixed bottom-6 right-6 z-[60] flex items-center group">
         <span class="mr-3 bg-[#16a34a] text-white text-xs font-bold px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-lg pointer-events-none">Arah Kiblat</span>
         <button onclick="bukaKiblat()" aria-label="Buka Kompas Arah Kiblat" class="w-14 h-14 bg-[#16a34a] rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all border-4 border-white/10">
-            <img src="icon-kiblat.svg" class="w-7 h-7 invert" alt="Kiblat">
+            <img src="Assets/icon-kiblat.svg" class="w-7 h-7 invert" alt="Kiblat">
         </button>
     </div>
 
@@ -208,7 +208,7 @@
                         </div>
                     
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <img src="Ka'bah.webp" class="w-[25%] object-contain drop-shadow-2xl" style="transform: translateY(-2px);" alt="Ka'bah">
+                            <img src="Assets/Ka'bah.webp" class="w-[25%] object-contain drop-shadow-2xl" style="transform: translateY(-2px);" alt="Ka'bah">
                         </div>
                     </div>
                 </div>
@@ -218,7 +218,7 @@
                 <div class="flex items-center gap-4">
                     <div class="p-2.5 rounded-2xl flex items-center justify-center" 
                          style="background: linear-gradient(135deg, #FFD700 0%, #E39600 100%);">
-                        <img src="icon-kiblat.svg" class="w-6 h-6 brightness-0 invert" alt="Kiblat">
+                        <img src="Assets/icon-kiblat.svg" class="w-6 h-6 brightness-0 invert" alt="Kiblat">
                     </div>
                     <span class="text-gray-800 font-bold text-base">Posisi Kiblat</span>
                 </div>
